@@ -11,7 +11,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// DeleteTodo deletes a todo from the request param
+// DeleteTodo //
+// @desc Delete a todo with the id in the request params
+// @route DELETE /api/v1/todos/:id
+// @access Private
 func DeleteTodo(c *gin.Context, client *mongo.Client) {
 	// make an ObjectID from the request params
 	id, objErr := primitive.ObjectIDFromHex(c.Param("id"))

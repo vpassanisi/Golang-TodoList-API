@@ -36,6 +36,9 @@ func SetupRouter(client *mongo.Client) *gin.Engine {
 		authentication.POST("/register", func(c *gin.Context) {
 			auth.Register(c, client)
 		})
+		authentication.GET("/logout", func(c *gin.Context) {
+			auth.Logout(c, client)
+		})
 	}
 
 	// returns router so it can be ran in main.go
