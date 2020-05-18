@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"context"
 	"log"
 	"net/http"
 
@@ -32,7 +31,7 @@ func Login(c *gin.Context, client *mongo.Client) {
 	usersCollection := client.Database("TodosDB").Collection("users")
 
 	// query for the user email because that is unique
-	findOneErr := usersCollection.FindOne(context.Background(), bson.M{
+	findOneErr := usersCollection.FindOne(c.Request.Context(), bson.M{
 		"email": credentials.Email,
 	}).Decode(&result)
 	// if query error respond with wrong email

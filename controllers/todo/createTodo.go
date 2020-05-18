@@ -1,13 +1,10 @@
 package todo
 
 import (
-	"context"
-
-	"go.mongodb.org/mongo-driver/bson/primitive"
-
 	"github.com/gin-gonic/gin"
 	"github.com/vpassanisi/TodoListAPI/models"
 	"github.com/vpassanisi/TodoListAPI/util"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -36,7 +33,7 @@ func CreateTodo(c *gin.Context, client *mongo.Client) {
 	todosCollection := client.Database("TodosDB").Collection("todos")
 
 	// put todo in the collection, returns _id
-	todosRes, insertErr := todosCollection.InsertOne(context.Background(), newTodo)
+	todosRes, insertErr := todosCollection.InsertOne(c.Request.Context(), newTodo)
 	if insertErr != nil {
 		c.JSON(401, util.ResError{
 			Success: false,

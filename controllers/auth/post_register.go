@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"context"
 	"log"
 	"net/http"
 
@@ -54,7 +53,7 @@ func Register(c *gin.Context, client *mongo.Client) {
 
 	alreadyExists := models.UserDB{}
 
-	findOneErr := usersCollection.FindOne(context.Background(), bson.M{"email": user.Email}).Decode(&alreadyExists)
+	findOneErr := usersCollection.FindOne(c.Request.Context(), bson.M{"email": user.Email}).Decode(&alreadyExists)
 	if findOneErr == nil {
 		c.JSON(400, util.ResMessage{
 			Success: false,
@@ -63,7 +62,7 @@ func Register(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	insertOneResult, insertErr := usersCollection.InsertOne(context.Background(), user)
+	insertOneResult, insertErr := usersCollection.InsertOne(c.Request.Context(), user)
 	if insertErr != nil {
 		c.JSON(400, util.ResError{
 			Success: false,
@@ -80,7 +79,7 @@ func Register(c *gin.Context, client *mongo.Client) {
 		}
 
 		c.SetSameSite(http.SameSiteNoneMode)
-		c.SetCookie("token", token, 2000, "/", "", true, true)
+		c.SetCookie("token", token, 2000, "/", "", false, true)
 
 		c.JSON(200, util.ResUser{
 			Success: true,

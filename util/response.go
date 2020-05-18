@@ -31,3 +31,10 @@ type ResTodo struct {
 	Success bool        `json:"success"`
 	Message models.Todo `json:"message"`
 }
+
+// ResTodos //
+// response struct
+type ResTodos struct {
+	Success bool          `json:"success"`
+	Message []models.Todo `json:"message"`
+}
