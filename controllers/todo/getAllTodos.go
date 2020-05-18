@@ -1,10 +1,9 @@
 package todo
 
 import (
-	"github.com/vpassanisi/TodoListAPI/util"
-
 	"github.com/gin-gonic/gin"
 	"github.com/vpassanisi/TodoListAPI/models"
+	"github.com/vpassanisi/TodoListAPI/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )

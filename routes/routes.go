@@ -22,6 +22,9 @@ func SetupRouter(client *mongo.Client) *gin.Engine {
 		todos.POST("", middleware.ProtectedRoute(), func(c *gin.Context) {
 			todo.CreateTodo(c, client)
 		})
+		todos.DELETE("/:id", middleware.ProtectedRoute(), func(c *gin.Context) {
+			todo.DeleteTodo(c, client)
+		})
 	}
 
 	// routes for authorization and authentication
