@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -18,6 +19,9 @@ func Logout(c *gin.Context) {
 	if os.Getenv("GIN_ENV") == "development" {
 		secure = false
 	}
+
+	// strict for csrf safety
+	c.SetSameSite(http.SameSiteStrictMode)
 
 	// set a new empty cookie
 	c.SetCookie("token", "", 2000, "/", "", secure, true)

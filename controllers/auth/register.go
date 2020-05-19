@@ -2,6 +2,7 @@ package auth
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/vpassanisi/TodoListAPI/util"
@@ -91,6 +92,9 @@ func Register(c *gin.Context, client *mongo.Client) {
 		if os.Getenv("GIN_ENV") == "development" {
 			secure = false
 		}
+
+		// strict for csrf safety
+		c.SetSameSite(http.SameSiteStrictMode)
 
 		// set cookie
 		c.SetCookie("token", token, 2000, "/", "", secure, true)
