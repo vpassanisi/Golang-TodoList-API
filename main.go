@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	// this needs a check for the environment and not load if in production
 	// loads .env in root directory
 	godotenv.Load()
 
