@@ -25,6 +25,9 @@ func SetupRouter(client *mongo.Client) *gin.Engine {
 		todos.DELETE("/:id", middleware.ProtectedRoute(), func(c *gin.Context) {
 			todo.DeleteTodo(c, client)
 		})
+		todos.PUT("/:id", middleware.ProtectedRoute(), func(c *gin.Context) {
+			todo.UpdateTodo(c, client)
+		})
 	}
 
 	// routes for authorization and authentication
@@ -36,9 +39,7 @@ func SetupRouter(client *mongo.Client) *gin.Engine {
 		authentication.POST("/register", func(c *gin.Context) {
 			auth.Register(c, client)
 		})
-		authentication.GET("/logout", func(c *gin.Context) {
-			auth.Logout(c, client)
-		})
+		authentication.GET("/logout", auth.Logout)
 	}
 
 	// returns router so it can be ran in main.go
