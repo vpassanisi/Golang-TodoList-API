@@ -2,8 +2,11 @@ package main
 
 import (
 	"context"
+	"os"
 	"time"
 
+	helmet "github.com/danielkov/gin-helmet"
+	"github.com/gin-contrib/cors"
 	"github.com/joho/godotenv"
 	"github.com/vpassanisi/TodoListAPI/config"
 	"github.com/vpassanisi/TodoListAPI/routes"
@@ -12,7 +15,9 @@ import (
 func main() {
 	// this needs a check for the environment and not load if in production
 	// loads .env in root directory
-	godotenv.Load()
+	if os.Getenv("GIN_ENV") == "development" {
+		godotenv.Load()
+	}
 
 	// client connection to mongodb
 	client := config.ConnectDB()
@@ -20,7 +25,15 @@ func main() {
 	// gin router instance
 	router := routes.SetupRouter(client)
 
-	// runst the router
+	// CORS middleware
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	router.Use(cors.New(config))
+
+	// basic security headers
+	router.Use(helmet.Default())
+
+	// run the router
 	router.Run()
 
 	// disconnect from mongodb

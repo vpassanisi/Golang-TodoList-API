@@ -7,11 +7,12 @@ for flexibility should you want to change something about the responses.
 
 ## Getting Started
 
-In order for it to run you will need to make a .env in the root directory and provide MONGO_URI, PORT, and JWT_SECRET variables.
+In order for it to run you will need to make a .env in the root directory and provide MONGO_URI, PORT, JWT_SECRET, and GIN_MODE variables.
+The .env will only load if environment variable GIN_ENV=development.
 Use gin for live reload:
 
 ```
-gin run main.go
+GIN_ENV=development gin run main.go
 ```
 
 ## Improvements
@@ -20,4 +21,4 @@ I think it would be cool to implement a way to revoke jwt. It is not the most pr
 possible here with a redis black list for revoked tokens. You would need to make sure to delete the black listed tokens from
 the list after they expire.
 
-It needs response safety headers, cors middleware, and request rate limiter.
+It needs a request rate limiter.

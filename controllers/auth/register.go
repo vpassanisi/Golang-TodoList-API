@@ -2,7 +2,7 @@ package auth
 
 import (
 	"log"
-	"net/http"
+	"os"
 
 	"github.com/vpassanisi/TodoListAPI/util"
 
@@ -20,13 +20,16 @@ import (
 // @route POST /api/v1/auth/register
 // @access Public
 func Register(c *gin.Context, client *mongo.Client) {
+	// var to bind credentials to
 	user := models.UserCred{}
 
+	// bind request body
 	bindErr := c.ShouldBindJSON(&user)
 	if bindErr != nil {
 		log.Fatal(bindErr)
 	}
 
+	// checks to make sure that all fields are populated
 	if user.Name == "" {
 		c.JSON(400, util.ResMessage{
 			Success: false,
@@ -47,12 +50,16 @@ func Register(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
+	// encrypt the provided password
 	user.Encrypt(user.Password)
 
+	// get collection
 	usersCollection := client.Database("TodosDB").Collection("users")
 
+	// var for checking if user email already in db
 	alreadyExists := models.UserDB{}
 
+	// search db to make sure provided email is unique
 	findOneErr := usersCollection.FindOne(c.Request.Context(), bson.M{"email": user.Email}).Decode(&alreadyExists)
 	if findOneErr == nil {
 		c.JSON(400, util.ResMessage{
@@ -62,6 +69,7 @@ func Register(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
+	// add user to db
 	insertOneResult, insertErr := usersCollection.InsertOne(c.Request.Context(), user)
 	if insertErr != nil {
 		c.JSON(400, util.ResError{
@@ -78,9 +86,16 @@ func Register(c *gin.Context, client *mongo.Client) {
 			return
 		}
 
-		c.SetSameSite(http.SameSiteNoneMode)
-		c.SetCookie("token", token, 2000, "/", "", false, true)
+		// secure cookie unles in development env
+		secure := true
+		if os.Getenv("GIN_ENV") == "development" {
+			secure = false
+		}
 
+		// set cookie
+		c.SetCookie("token", token, 2000, "/", "", secure, true)
+
+		// respond with the created users information
 		c.JSON(200, util.ResUser{
 			Success: true,
 			Message: models.UserRes{

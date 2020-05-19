@@ -2,7 +2,7 @@ package auth
 
 import (
 	"log"
-	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/vpassanisi/TodoListAPI/models"
@@ -61,9 +61,15 @@ func Login(c *gin.Context, client *mongo.Client) {
 			})
 			return
 		}
-		// set cookie with samesite=none
-		c.SetSameSite(http.SameSiteNoneMode)
-		c.SetCookie("token", token, 2000, "/", "", false, true)
+
+		// secure cookie unles in development env
+		secure := true
+		if os.Getenv("GIN_ENV") == "development" {
+			secure = false
+		}
+
+		// set cookie
+		c.SetCookie("token", token, 2000, "/", "", secure, true)
 
 		// response struct
 		c.JSON(200, util.ResUser{
