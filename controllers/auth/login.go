@@ -41,6 +41,7 @@ func Login(c *gin.Context, client *mongo.Client) {
 			Success: false,
 			Message: "That email does not exist",
 		})
+		return
 	}
 
 	// compare encrypted passowrd to provided password
@@ -49,39 +50,40 @@ func Login(c *gin.Context, client *mongo.Client) {
 	if compErr != nil {
 		c.JSON(401, util.ResMessage{
 			Success: false,
-			Message: "Incorred password",
+			Message: "Incorrect password",
 		})
-	} else {
-		// get a signed token containing the users _id
-		token, getSignedErr := credentials.GetSignedJWT(result.ID.Hex())
-		// jwt errror, should be rare but needs to return
-		if getSignedErr != nil {
-			c.JSON(400, util.ResError{
-				Success: false,
-				Error:   getSignedErr,
-			})
-			return
-		}
-
-		// secure cookie unles in development env
-		secure := true
-		if os.Getenv("GIN_ENV") == "development" {
-			secure = false
-		}
-
-		// strict for csrf safety
-		c.SetSameSite(http.SameSiteStrictMode)
-
-		// set cookie
-		c.SetCookie("token", token, 2000, "/", "", secure, true)
-
-		// response struct
-		c.JSON(200, util.ResUser{
-			Success: true,
-			Message: models.UserRes{
-				Name:  result.Name,
-				Email: result.Email,
-			},
-		})
+		return
 	}
+
+	// get a signed token containing the users _id
+	token, getSignedErr := credentials.GetSignedJWT(result.ID.Hex())
+	// jwt errror, should be rare but needs to return
+	if getSignedErr != nil {
+		c.JSON(400, util.ResError{
+			Success: false,
+			Error:   getSignedErr,
+		})
+		return
+	}
+
+	// secure cookie unles in development env
+	secure := true
+	if os.Getenv("GIN_ENV") == "development" {
+		secure = false
+	}
+
+	// strict for csrf safety
+	c.SetSameSite(http.SameSiteStrictMode)
+
+	// set cookie
+	c.SetCookie("token", token, 2000, "/", "", secure, true)
+
+	// response struct
+	c.JSON(200, util.ResUser{
+		Success: true,
+		Message: models.UserRes{
+			Name:  result.Name,
+			Email: result.Email,
+		},
+	})
 }

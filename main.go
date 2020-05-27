@@ -2,18 +2,18 @@ package main
 
 import (
 	"context"
+	"net/http"
 	"os"
 	"time"
 
-	helmet "github.com/danielkov/gin-helmet"
-	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/contrib/static"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/vpassanisi/TodoListAPI/config"
 	"github.com/vpassanisi/TodoListAPI/routes"
 )
 
 func main() {
-	// this needs a check for the environment and not load if in production
 	// loads .env in root directory
 	if os.Getenv("GIN_ENV") == "development" {
 		godotenv.Load()
@@ -22,16 +22,25 @@ func main() {
 	// client connection to mongodb
 	client := config.ConnectDB()
 
-	// gin router instance
-	router := routes.SetupRouter(client)
+	// new gin router
+	router := gin.Default()
 
 	// CORS middleware
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	router.Use(cors.New(config))
+	// i'm not sure this will be necessary but it is here for testing purposes
+	// router.Use(middleware.Cors())
 
 	// basic security headers
-	router.Use(helmet.Default())
+	// router.Use(helmet.Default())
+
+	// set up routes
+	routes.SetupRouter(router, client)
+
+	router.Use(static.Serve("/svelte", static.LocalFile("./client/Svelte-TodoList/public", true)))
+
+	// any request to a not specified route gets index.html
+	router.NoRoute(func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
 
 	// run the router
 	router.Run()

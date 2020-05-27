@@ -10,9 +10,7 @@ import (
 
 // SetupRouter //
 // creates gin router and defines routes
-func SetupRouter(client *mongo.Client) *gin.Engine {
-	router := gin.Default()
-
+func SetupRouter(router *gin.Engine, client *mongo.Client) {
 	// routes for todo CRUD
 	todos := router.Group("/api/v1/todos")
 	{
@@ -39,9 +37,10 @@ func SetupRouter(client *mongo.Client) *gin.Engine {
 		authentication.POST("/register", func(c *gin.Context) {
 			auth.Register(c, client)
 		})
+		authentication.GET("/getMe", middleware.ProtectedRoute(), func(c *gin.Context) {
+			auth.GetMe(c, client)
+		})
 		authentication.GET("/logout", auth.Logout)
 	}
 
-	// returns router so it can be ran in main.go
-	return router
 }

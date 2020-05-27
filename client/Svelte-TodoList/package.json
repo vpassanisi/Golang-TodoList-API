@@ -1,0 +1,35 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "autoprefixer": "^9.8.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "npm-run-all": "^4.1.5",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-cli": "^7.1.1",
+    "serve": "^11.0.0",
+    "style-loader": "^0.23.1",
+    "svelte": "^3.0.0",
+    "svelte-loader": "2.13.3",
+    "svelte-media": "0.0.3",
+    "svelte-spa-router": "^2.1.0",
+    "tailwindcss": "^1.4.6",
+    "tailwindcss-bg-alpha": "^2.1.0",
+    "tailwindcss-dark-mode": "^1.1.4",
+    "terser-webpack-plugin": "^3.0.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all build:css build:js ",
+    "start": "npm-run-all -p start:css start:js",
+    "start:js": "webpack-dev-server --content-base public",
+    "start:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css -w",
+    "build:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css",
+    "build:js": "webpack"
+  }
+}
