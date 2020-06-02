@@ -75,7 +75,7 @@ func UpdateTodo(c *gin.Context, client *mongo.Client) {
 	}
 
 	// the response struct takes models.Todo{} so this function will fill it will the updated document
-	// it cannot recognize primitive.ObjectID to I just did it manually :(
+	// it cannot recognize primitive.ObjectID so I just did it manually :(
 	updatedTodo := models.Todo{}
 	updatedTodo.ID = updated["_id"].(primitive.ObjectID)
 	decodeErr := mapstructure.Decode(updated, &updatedTodo)

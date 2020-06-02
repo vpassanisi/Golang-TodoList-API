@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useOvermind } from "../Overmind/index";
 
@@ -6,24 +6,48 @@ const Navbar: React.FC = () => {
   const {
     state: {
       darkMode: { isEnabled },
+      auth: { isAuthenticated },
     },
     actions: {
       darkMode: { turnOff, turnOn },
+      auth: { logout },
     },
   } = useOvermind();
 
   let isDesktop: boolean = useMediaQuery({ query: "(min-width: 1024px)" });
 
-  const darkModeToggle = (
-    <button
-      className="h-full hover:bg-white-alpha-30 transition-colors duration-300
+  const desktopNav = (
+    <Fragment>
+      {isAuthenticated ? (
+        <Fragment>
+          <button
+            className="h-full hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none px-2"
+            onClick={() => logout()}
+          >
+            Logout
+          </button>
+          <button
+            className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"
-      onClick={() => (isEnabled ? turnOff() : turnOn())}
-    >
-      <i className="material-icons">
-        {isEnabled ? "brightness_7" : "brightness_4"}
-      </i>
-    </button>
+            onClick={() => (isEnabled ? turnOff() : turnOn())}
+          >
+            <i className="material-icons">
+              {isEnabled ? "brightness_7" : "brightness_4"}
+            </i>
+          </button>
+        </Fragment>
+      ) : (
+        <button
+          className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
+    ease-in-out px-2"
+          onClick={() => (isEnabled ? turnOff() : turnOn())}
+        >
+          <i className="material-icons">
+            {isEnabled ? "brightness_7" : "brightness_4"}
+          </i>
+        </button>
+      )}
+    </Fragment>
   );
 
   const mobile = (
@@ -41,7 +65,9 @@ const Navbar: React.FC = () => {
         <div className="flex items-center text-2xl font-hairline h-full">
           TodoList
         </div>
-        <div className="h-full">{isDesktop ? darkModeToggle : mobile}</div>
+        <div className="flex flex-row items-center justify-center h-full">
+          {isDesktop ? desktopNav : mobile}
+        </div>
       </div>
     </div>
   );
