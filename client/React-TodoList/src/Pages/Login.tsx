@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useOvermind } from "../Overmind";
 import { useHistory } from "react-router-dom";
 
 const Login: React.FC = (props) => {
+  const [credencials, setCredencials] = useState<Credencials>({
+    email: null,
+    password: null,
+  });
   const {
     state: {
       auth: { isAuthenticated },
@@ -18,11 +22,6 @@ const Login: React.FC = (props) => {
     email: string | null;
     password: string | null;
   }
-
-  let credencials: Credencials = {
-    email: null,
-    password: null,
-  };
 
   useEffect(() => {
     if (isAuthenticated) history.push("/todos");
@@ -52,7 +51,9 @@ const Login: React.FC = (props) => {
           type="text"
           placeholder="Email"
           name="email"
-          onChange={(e) => (credencials.email = e.target.value as string)}
+          onChange={(e) =>
+            setCredencials({ ...credencials, email: e.target.value })
+          }
         />
         <input
           className="border-b-2 border-black dark:border-white bg-transparent
@@ -62,7 +63,9 @@ const Login: React.FC = (props) => {
           type="text"
           placeholder="Password"
           name="password"
-          onChange={(e) => (credencials.password = e.target.value as string)}
+          onChange={(e) =>
+            setCredencials({ ...credencials, password: e.target.value })
+          }
         />
         <button
           className="bg-light-blue-300 py-2 rounded shadow focus:outline-none"

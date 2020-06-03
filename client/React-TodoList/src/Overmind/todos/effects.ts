@@ -28,6 +28,40 @@ export const api = {
       return data;
     }
   },
+  async newTodo(body: object) {
+    interface Data {
+      error: null | string;
+      newTodo: Todo | null;
+    }
+
+    let data: Data = {
+      error: null,
+      newTodo: null,
+    };
+    try {
+      const req = await fetch(`/api/v1/todos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+
+      const res = await req.json();
+
+      if (res.success) {
+        data.newTodo = res.message;
+      } else if (res.error) {
+        data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      } else {
+        data.error = res.message;
+      }
+      return data;
+    } catch (err) {
+      console.log(err);
+      data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      return data;
+    }
+  },
   async updateTodo(body: object, id: string) {
     interface Data {
       error: null | string;

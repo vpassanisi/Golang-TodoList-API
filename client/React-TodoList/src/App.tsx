@@ -8,6 +8,7 @@ import "./css/tailwind.css";
 import Navbar from "./Layout/Navbar";
 import Login from "./Pages/Login";
 import Todos from "./Pages/Todos";
+import CreateUser from "./Pages/CreateUser";
 import Error from "./Layout/Error";
 
 const App: React.FC = () => {
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/todos" component={Todos} />
+          <Route exact path="/register" component={CreateUser} />
         </Switch>
         <Error />
       </Router>

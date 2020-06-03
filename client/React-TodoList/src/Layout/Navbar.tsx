@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useOvermind } from "../Overmind/index";
+import { useHistory } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const {
@@ -13,6 +14,8 @@ const Navbar: React.FC = () => {
       auth: { logout },
     },
   } = useOvermind();
+
+  const history = useHistory();
 
   let isDesktop: boolean = useMediaQuery({ query: "(min-width: 1024px)" });
 
@@ -37,15 +40,29 @@ const Navbar: React.FC = () => {
           </button>
         </Fragment>
       ) : (
-        <button
-          className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
+        <Fragment>
+          <button
+            className="h-full hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none px-2"
+            onClick={() => history.push("/")}
+          >
+            Login
+          </button>
+          <button
+            className="h-full hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none px-2"
+            onClick={() => history.push("/register")}
+          >
+            New User
+          </button>
+          <button
+            className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"
-          onClick={() => (isEnabled ? turnOff() : turnOn())}
-        >
-          <i className="material-icons">
-            {isEnabled ? "brightness_7" : "brightness_4"}
-          </i>
-        </button>
+            onClick={() => (isEnabled ? turnOff() : turnOn())}
+          >
+            <i className="material-icons">
+              {isEnabled ? "brightness_7" : "brightness_4"}
+            </i>
+          </button>
+        </Fragment>
       )}
     </Fragment>
   );

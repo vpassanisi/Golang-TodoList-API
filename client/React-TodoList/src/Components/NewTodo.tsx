@@ -1,12 +1,18 @@
 import React from "react";
+import { useOvermind } from "../Overmind";
 
 const NewTodo: React.FC = () => {
+  const {
+    actions: {
+      todos: { newTodo },
+    },
+  } = useOvermind();
   interface NewTodo {
     title: string | null;
     description: string | null;
   }
 
-  const newTodo: NewTodo = {
+  const newTodoData: NewTodo = {
     title: null,
     description: null,
   };
@@ -22,7 +28,7 @@ const NewTodo: React.FC = () => {
         type="text"
         placeholder="Title"
         name="title"
-        onChange={(e) => (newTodo.title = e.target.value as string)}
+        onChange={(e) => (newTodoData.title = e.target.value as string)}
       />
       <input
         className="border-b-2 border-black dark:border-white bg-transparent
@@ -32,11 +38,11 @@ const NewTodo: React.FC = () => {
         type="text"
         placeholder="Description"
         name="description"
-        onChange={(e) => (newTodo.description = e.target.value as string)}
+        onChange={(e) => (newTodoData.description = e.target.value as string)}
       />
       <button
         className="bg-light-blue-300 py-2 rounded shadow focus:outline-none"
-        onClick={() => {}}
+        onClick={() => newTodo(newTodoData)}
       >
         Add
       </button>

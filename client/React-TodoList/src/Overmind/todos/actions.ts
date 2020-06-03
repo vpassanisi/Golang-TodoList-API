@@ -44,6 +44,22 @@ export const deleteTodo: AsyncAction<string> = async (
   }
 };
 
+export const newTodo: AsyncAction<object> = async (
+  { state, effects },
+  newTodo
+) => {
+  const data = await effects.todos.api.newTodo(newTodo);
+
+  if (data.error) {
+    state.todos.error = data.error;
+    state.todos.error = (await clearError()) as null;
+  } else if (data.newTodo) {
+    let newState = [data.newTodo, ...state.todos.todos];
+
+    state.todos.todos = newState;
+  }
+};
+
 const clearError = () => {
   return new Promise<null>((resolve) => {
     setTimeout(() => {

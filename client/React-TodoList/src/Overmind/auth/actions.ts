@@ -15,6 +15,15 @@ export const getMe: AsyncAction = async ({ state, effects }) => {
   if (state.auth.error) state.auth.error = (await clearError()) as null;
 };
 
+export const createUser: AsyncAction<object> = async (
+  { state, effects },
+  user
+) => {
+  state.auth = await effects.auth.api.createUser(user);
+
+  if (state.auth.error) state.auth.error = (await clearError()) as null;
+};
+
 export const logout: AsyncAction = async ({ state, effects }) => {
   const data = await effects.auth.api.logout();
 

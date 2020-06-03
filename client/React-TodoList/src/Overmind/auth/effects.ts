@@ -49,6 +49,32 @@ export const api = {
       if (res.success) {
         data.isAuthenticated = true;
         data.user = res.message;
+      }
+      return data;
+    } catch (err) {
+      console.log(err);
+      return data;
+    }
+  },
+  async createUser(body: object) {
+    let data: AuthState = {
+      isAuthenticated: false,
+      user: null,
+      error: null,
+    };
+    try {
+      const req = await fetch(`/api/v1/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+
+      const res = await req.json();
+
+      if (res.success) {
+        data.isAuthenticated = true;
+        data.user = res.message;
       } else if (res.error) {
         data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
       } else {
