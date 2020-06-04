@@ -1,26 +1,32 @@
 <template>
-  <button v-on:click="darkModeToggle">darkMode {{ darkMode.darkMode }}</button>
+  <Fragment>
+    <Navbar />
+    <router-view />
+    <Error />
+  </Fragment>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
+import { Fragment } from "vue-fragment";
+import Navbar from "./layout/Navbar.vue";
+import Error from "./layout/Error.vue";
 
 export default {
   name: "App",
+  components: {
+    Navbar,
+    Error,
+    Fragment,
+  },
   methods: {
-    ...mapActions(["turnOn", "turnOff"]),
-    darkModeToggle() {
-      if (this.darkMode) {
-        this.turnOff();
-      } else {
-        this.turnOn();
-      }
+    ...mapActions(["turnOn"]),
+  },
+  mounted: function() {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      this.turnOn();
     }
   },
-  computed: mapState({
-    darkMode: state => state.darkMode.darkMode
-  }),
-  components: {}
 };
 </script>
 

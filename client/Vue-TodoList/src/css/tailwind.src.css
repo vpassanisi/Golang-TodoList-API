@@ -13,3 +13,10 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
+.mode-dark input:-webkit-autofill,
+.mode-dark input:-webkit-autofill:hover,
+.mode-dark input:-webkit-autofill:focus,
+.mode-dark input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: rgb(0, 0, 0) !important;
+}
