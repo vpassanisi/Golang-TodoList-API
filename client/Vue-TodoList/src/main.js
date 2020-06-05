@@ -5,6 +5,7 @@ import VueMq from "vue-mq";
 import store from "./store";
 import Login from "./pages/Login.vue";
 import Todos from "./pages/Todos.vue";
+import CreateUser from "./pages/CreateUser.vue";
 
 import "./css/tailwind.css";
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: "/todos",
     component: Todos,
+  },
+  {
+    path: "/register",
+    component: CreateUser,
   },
 ];
 

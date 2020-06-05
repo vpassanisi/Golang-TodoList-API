@@ -78,6 +78,33 @@ const actions = {
       setTimeout(() => commit("clearAuthErr"), 2000);
     }
   },
+  async createUser({ commit }, body) {
+    try {
+      const req = await fetch(`/api/v1/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+
+      const res = await req.json();
+
+      if (res.success) {
+        commit("setLogin", res.message);
+        router.push("/todos");
+      } else if (res.error) {
+        commit("setErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
+        setTimeout(() => commit("clearAuthErr"), 2000);
+      } else {
+        commit("setErr", res.message);
+        setTimeout(() => commit("clearAuthErr"), 2000);
+      }
+    } catch (err) {
+      console.log(err);
+      commit("setErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
+      setTimeout(() => commit("clearAuthErr"), 2000);
+    }
+  },
 };
 
 const mutations = {

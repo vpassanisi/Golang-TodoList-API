@@ -2,52 +2,43 @@
   <div
     class="flex flex-col mx-auto mt-24 bg-gray-900 dark:bg-gray-300 w-90p max-w-screen-sm p-4 rounded shadow"
   >
-    <div class="text-white dark:text-black text-4xl font-hairline text-center mb-4">Login</div>
+    <div class="text-white dark:text-black text-4xl font-hairline text-center mb-4">New Todo</div>
     <input
       class="dark:text-black bg-transparent border-b-2 dark:border-gray-800 focus:border-vue-green-500 focus:outline-none transition-colors duration-300 ease-in-out dark-placeholder:placeholder-gray-800 p-2 mb-4"
       type="text"
-      placeholder="Email"
-      name="email"
-      v-model="cred.email"
+      placeholder="Title"
+      name="title"
+      v-model="newTodoData.title"
     />
     <input
       class="dark:text-black bg-transparent border-b-2 dark:border-gray-800 focus:border-vue-green-500 focus:outline-none transition-colors duration-300 ease-in-out dark-placeholder:placeholder-gray-800 p-2 mb-4"
       type="text"
-      placeholder="Password"
-      name="password"
-      v-model="cred.password"
+      placeholder="Description"
+      name="description"
+      v-model="newTodoData.description"
     />
     <button
       class="w-full p-2 bg-vue-green-500 rounded shadow focus:outline-none"
-      v-on:click="handleLogin()"
-    >Login</button>
+      v-on:click="newTodo(newTodoData)"
+    >Add</button>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
-  name: "Login",
+  name: "NewTodo",
   methods: {
-    ...mapActions(["login", "getMe"]),
-    handleLogin: function() {
-      this.login(this.cred);
+    ...mapActions(["newTodo"]),
+    handleAddNewTodo: function() {
+      this.newTodo(this.newTodoData);
     }
   },
   data: () => {
     return {
-      cred: {}
+      newTodoData: {}
     };
-  },
-  computed: mapState({
-    isAuthenticated: state => state.auth.isAuthenticated
-  }),
-  mounted: function() {
-    if (this.isAuthenticated) {
-      this.$router.push("/todos");
-    } else {
-      this.getMe();
-    }
   }
 };
 </script>
