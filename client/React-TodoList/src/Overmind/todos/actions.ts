@@ -2,7 +2,11 @@ import { AsyncAction } from "overmind";
 import { Todo } from "./state";
 
 export const getTodos: AsyncAction = async ({ state, effects }) => {
-  state.todos = await effects.todos.api.getTodos();
+  let todos = await effects.todos.api.getTodos();
+
+  todos.todos = effects.todos.api.sortTodos(todos.todos);
+
+  state.todos = todos;
 
   if (state.todos.error) state.todos.error = await clearError();
 };
@@ -25,6 +29,8 @@ export const updateTodo: AsyncAction<UpdateTodoArg> = async (
     state.todos.error = (await clearError()) as null;
   } else {
     state.todos.todos[index] = updatedTodo.updatedTodo as Todo;
+
+    state.todos.todos = effects.todos.api.sortTodos(state.todos.todos);
   }
 };
 

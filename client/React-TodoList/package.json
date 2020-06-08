@@ -52,5 +52,6 @@
     "tailwindcss-dark-mode": "^1.1.4",
     "typescript": "^3.9.3"
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:3000",
+  "homepage": "http://locahost:3000/react"
 }

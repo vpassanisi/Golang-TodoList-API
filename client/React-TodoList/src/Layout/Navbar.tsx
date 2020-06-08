@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useOvermind } from "../Overmind/index";
 import { useHistory } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 const Navbar: React.FC = () => {
   const {
@@ -17,6 +18,8 @@ const Navbar: React.FC = () => {
 
   const history = useHistory();
 
+  const [isOpen, setIsOpen] = useState(false);
+
   let isDesktop: boolean = useMediaQuery({ query: "(min-width: 1024px)" });
 
   const desktopNav = (
@@ -30,7 +33,7 @@ const Navbar: React.FC = () => {
             Logout
           </button>
           <button
-            className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
+            className="flex items-center h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"
             onClick={() => (isEnabled ? turnOff() : turnOn())}
           >
@@ -51,10 +54,10 @@ const Navbar: React.FC = () => {
             className="h-full hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none px-2"
             onClick={() => history.push("/register")}
           >
-            New User
+            Regsiter
           </button>
           <button
-            className="flex h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
+            className="flex items-center h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"
             onClick={() => (isEnabled ? turnOff() : turnOn())}
           >
@@ -69,8 +72,9 @@ const Navbar: React.FC = () => {
 
   const mobile = (
     <button
+      onClick={() => setIsOpen(!isOpen)}
       className="h-full hover:bg-white-alpha-30 transition-colors duration-300
-    ease-in-out px-2"
+    ease-in-out px-2 focus:outline-none"
     >
       <i className="material-icons">menu</i>
     </button>
@@ -78,6 +82,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="w-full h-16 bg-light-blue-300">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="flex flex-row justify-between w-90p h-full mx-auto">
         <div className="flex items-center text-2xl font-hairline h-full">
           TodoList

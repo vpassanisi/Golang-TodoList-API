@@ -5,8 +5,10 @@ module.exports = {
     "./src/**/*.html",
     "./src/**/*.vue",
     "./src/**/*.js",
+    "./src/**/*.ts",
     "./src/**/*.svelte",
     "./src/**/*.jsx",
+    "./src/**/*.tsx",
     "./public/*.html",
   ],
   theme: {

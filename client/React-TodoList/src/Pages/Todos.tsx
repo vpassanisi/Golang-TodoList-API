@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useOvermind } from "../Overmind";
 import { useHistory } from "react-router-dom";
+import { Todo } from "../Overmind/todos/state";
 
 import NewTodo from "../Components/NewTodo";
-import Todo from "../Components/Todo";
+import TodoComp from "../Components/Todo";
 
 const Todos: React.FC = () => {
   const {
@@ -19,7 +20,7 @@ const Todos: React.FC = () => {
   const history = useHistory();
 
   let allTodos = todos.map((todo, index) => (
-    <Todo todo={todo as Todo} key={index} />
+    <TodoComp todo={todo as Todo} key={index} />
   ));
 
   useEffect(() => {

@@ -13,12 +13,12 @@ import Error from "./Layout/Error";
 
 const App: React.FC = () => {
   const overmind = createOvermind(config, {
-    devtools: true,
+    devtools: "http://localhost:5000",
   });
 
   return (
     <Provider value={overmind}>
-      <Router>
+      <Router basename={"/react"}>
         <Navbar />
         <Switch>
           <Route exact path="/" component={Login} />

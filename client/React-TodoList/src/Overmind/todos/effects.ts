@@ -127,4 +127,13 @@ export const api = {
       return data;
     }
   },
+  sortTodos(todos: Todo[]) {
+    let done = todos.filter((todo: Todo) => todo.done);
+    let notDone = todos.filter((todo: Todo) => !todo.done);
+
+    done.sort((a, b) => b.createdAt - a.createdAt);
+    notDone.sort((a, b) => b.createdAt - a.createdAt);
+
+    return [...notDone, ...done];
+  },
 };

@@ -1,23 +1,14 @@
 import React from "react";
 import { useOvermind } from "../Overmind";
 import { UpdateTodoArg } from "../Overmind/todos/actions";
-
-interface Todo {
-  _id: string;
-  title: string;
-  description: string;
-  user: string;
-  isDone: boolean;
-  createdAt: number;
-  updatedAt: number;
-}
+import { Todo } from "../Overmind/todos/state";
 
 interface TodoProps {
   todo: Todo;
   key: number;
 }
 
-const Todo: React.FC<TodoProps> = (props) => {
+const TodoComp: React.FC<TodoProps> = (props) => {
   const { todo } = props;
 
   const {
@@ -39,16 +30,16 @@ const Todo: React.FC<TodoProps> = (props) => {
   let changeIsDone: UpdateTodoArg = {
     id: todo._id,
     body: {
-      isdone: !todo.isDone,
+      done: !todo.done,
     },
   };
 
   return (
-    <div className="flex flex-row items-center h-full w-full border border-black dark:border-white p-2">
+    <div className="flex flex-row items-center h-full w-full border border-black dark:border-white p-2 m-1">
       <input
         className="mx-4"
         type="checkbox"
-        checked={todo.isDone}
+        checked={todo.done}
         onChange={() => updateTodo(changeIsDone)}
       />
       <div className="h-full w-full">
@@ -67,4 +58,4 @@ const Todo: React.FC<TodoProps> = (props) => {
   );
 };
 
-export default Todo;
+export default TodoComp;

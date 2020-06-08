@@ -7,6 +7,7 @@ const NewTodo: React.FC = () => {
       todos: { newTodo },
     },
   } = useOvermind();
+
   interface NewTodo {
     title: string | null;
     description: string | null;
