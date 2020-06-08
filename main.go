@@ -36,6 +36,8 @@ func main() {
 	routes.SetupRouter(router, client)
 
 	router.Use(static.Serve("/svelte", static.LocalFile("./client/Svelte-TodoList/public", true)))
+	router.Use(static.Serve("/react", static.LocalFile("./client/React-TodoList/build", true)))
+	router.Use(static.Serve("/vue", static.LocalFile("./client/Vue-TodoList/dist", true)))
 
 	// any request to a not specified route gets index.html
 	router.NoRoute(func(c *gin.Context) {

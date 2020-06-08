@@ -47,7 +47,7 @@ func CreateTodo(c *gin.Context, client *mongo.Client) {
 		ID:          todosRes.InsertedID.(primitive.ObjectID),
 		Title:       newTodo.Title,
 		Description: newTodo.Description,
-		IsDone:      newTodo.IsDone,
+		Done:        newTodo.Done,
 		CreatedAt:   newTodo.CreatedAt,
 		UpdatedAt:   newTodo.UpdatedAt,
 		User:        newTodo.User,

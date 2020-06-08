@@ -11,7 +11,7 @@ type Todo struct {
 	ID          primitive.ObjectID `bson:"_id" json:"_id"`
 	Title       string             `json:"title"`
 	Description string             `json:"description"`
-	IsDone      bool               `json:"isDone"`
+	Done        bool               `json:"done"`
 	CreatedAt   int64              `json:"createdAt"`
 	UpdatedAt   int64              `json:"updatedAt"`
 	User        string             `json:"user"`
@@ -31,7 +31,7 @@ func (todo *Todo) SetUpdatedAt() {
 type NewTodo struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
-	IsDone      bool   `json:"isDone"`
+	Done        bool   `json:"done"`
 	CreatedAt   int64  `json:"createdAt"`
 	UpdatedAt   int64  `json:"updatedAt"`
 	User        string `json:"user"`

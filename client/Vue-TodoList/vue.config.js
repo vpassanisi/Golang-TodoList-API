@@ -1,3 +1,5 @@
+const { process } = require("autoprefixer");
+
 module.exports = {
   devServer: {
     proxy: {
@@ -6,4 +8,5 @@ module.exports = {
       },
     },
   },
+  publicPath: "/vue/",
 };
