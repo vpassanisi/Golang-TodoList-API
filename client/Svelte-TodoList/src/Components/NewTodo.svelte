@@ -19,7 +19,7 @@
 
 <div
   class="flex flex-col w-full bg-gray-300 dark:bg-gray-700 mx-auto mt-24 p-4
-  shadow max-w-screen-md mb-8">
+  shadow max-w-screen-md mb-8 rounded">
   <div class="text-center text-4xl dark:text-white font-hairline mb-4">
     New Todo
   </div>

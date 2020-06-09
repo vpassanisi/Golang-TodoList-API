@@ -4,8 +4,108 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoList</title>
+    <style>
+      html {
+        line-height: 1.15; /* 1 */
+        -webkit-text-size-adjust: 100%; /* 2 */
+      }
+      body {
+        margin: 0;
+      }
+
+      html {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji"; /* 1 */
+        line-height: 1.5; /* 2 */
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box; /* 1 */
+        border-width: 0; /* 2 */
+        border-style: solid; /* 2 */
+        border-color: #e0e0e0; /* 2 */
+      }
+
+      a {
+        background-color: transparent;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .btn-svelte {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ff3d00;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        transition: background 300ms ease-in-out;
+        margin-right: 1rem;
+      }
+      .btn-svelte:hover {
+        background-color: #f37048;
+      }
+      .btn-react {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #4fc3f7;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        transition: background 300ms ease-in-out;
+        margin-right: 1rem;
+      }
+      .btn-react:hover {
+        background-color: rgb(112, 201, 243);
+      }
+      .btn-vue {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #00b376;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        transition: background 300ms ease-in-out;
+        margin-right: 1rem;
+      }
+      .btn-vue:hover {
+        background-color: #5bc7a3;
+      }
+    </style>
   </head>
   <body>
-    <h1>pick a framework</h1>
+    <div class="container">
+      <h1>What framework would you like to use?</h1>
+      <div>
+        <a href="/svelte" class="btn-svelte">
+          Svelte
+        </a>
+        <a href="/react" class="btn-react">React</a>
+        <a href="/vue" class="btn-vue">Vue</a>
+      </div>
+    </div>
   </body>
 </html>

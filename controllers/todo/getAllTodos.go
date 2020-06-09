@@ -33,7 +33,8 @@ func GetAllTodos(c *gin.Context, client *mongo.Client) {
 	}
 
 	// loop through cursor and put todos in the todos slice of todos
-	if cursorErr := cursor.All(c.Request.Context(), &todos); cursorErr != nil {
+	cursorErr := cursor.All(c.Request.Context(), &todos)
+	if cursorErr != nil {
 		c.JSON(500, util.ResError{
 			Success: false,
 			Error:   cursorErr,

@@ -21,10 +21,13 @@
     class="flex flex-col items-center justify-center mx-auto w-90p
     max-w-screen-md">
     <NewTodo />
-    {#each $todos as todo (todo._id)}
-      <div class="w-full" animate:flip={{ duration: 500 }}>
-        <Todo {todo} />
-      </div>
-    {/each}
+    <div class="bg-gray-300 dark:bg-gray-700 w-full p-4 rounded shadow">
+      {#each $todos as todo (todo._id)}
+        <div class="w-full" animate:flip={{ duration: 500 }}>
+          <Todo {todo} />
+        </div>
+      {/each}
+    </div>
+
   </div>
 </section>

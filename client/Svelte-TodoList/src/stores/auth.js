@@ -74,6 +74,32 @@ const authorization = () => {
     }
   };
 
+  const Register = async (body) => {
+    try {
+      const req = await fetch(`/api/v1/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+
+      const res = await req.json();
+
+      if (res.success) {
+        set(true);
+        push("/todos");
+      } else if (res.error) {
+        console.log(res.error);
+        error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
+      } else {
+        error.NewError(res.message);
+      }
+    } catch (err) {
+      console.log(err);
+      error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
+    }
+  };
+
   return {
     subscribe,
     set,
@@ -81,6 +107,7 @@ const authorization = () => {
     Login: Login,
     Logout: Logout,
     GetMe: GetMe,
+    Register: Register,
   };
 };
 

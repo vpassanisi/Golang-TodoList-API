@@ -27,6 +27,7 @@
     dark-placeholder:placeholder-gray-300 w-1/3 mr-2"
     placeholder="Description"
     value={todo.description}
+    rows="1"
     on:change={e => (updateTodo.description = e.target.value)}
     type="text" />
   <button

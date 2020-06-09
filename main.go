@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"net/http"
 	"os"
 	"time"
 
@@ -40,9 +39,7 @@ func main() {
 	router.Use(static.Serve("/vue", static.LocalFile("./client/Vue-TodoList/dist", true)))
 
 	// any request to a not specified route gets index.html
-	router.NoRoute(func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-	})
+	router.Use(static.Serve("/", static.LocalFile("./client", true)))
 
 	// run the router
 	router.Run()
