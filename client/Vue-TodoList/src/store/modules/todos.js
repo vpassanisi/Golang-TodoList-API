@@ -131,8 +131,8 @@ const mutations = {
     state.todos.splice(index, 1);
   },
   sortTodos(state) {
-    let done = state.todos.filter((todo) => todo.isDone);
-    let notDone = state.todos.filter((todo) => !todo.isDone);
+    let done = state.todos.filter((todo) => todo.done);
+    let notDone = state.todos.filter((todo) => !todo.done);
 
     done.sort((a, b) => b.createdAt - a.createdAt);
     notDone.sort((a, b) => b.createdAt - a.createdAt);
