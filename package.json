@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "dev": "env GIN_ENV=development gin run main.go",
-    "start": "env GIN_ENV=development go run main.go"
-  }
-}
