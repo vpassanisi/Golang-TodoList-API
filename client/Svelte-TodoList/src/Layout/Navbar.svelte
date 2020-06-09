@@ -11,9 +11,8 @@
   let isOpen;
 </script>
 
-<div
-  class="flex flex-row justify-center w-full h-16 bg-deep-orange-a400 shadow">
-  <div class="flex flex-row justify-between w-90p h-full">
+<div class="fixed top-0 w-full h-16 bg-deep-orange-a400 shadow">
+  <div class="flex flex-row justify-between w-90p mx-auto h-full">
     <div class="flex flex-row items-center">TodoList</div>
     <div class="flex flex-row items-center">
       {#if $media.lg}
@@ -58,5 +57,6 @@
       {/if}
     </div>
   </div>
+  <div id="loading" class="progress-line invisible" />
 </div>
 <Sidebar bind:isOpen />

@@ -6,6 +6,7 @@ const authorization = () => {
   const { subscribe, set, update } = writable(false);
 
   const Login = async (cred) => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/login`, {
         method: "POST",
@@ -26,7 +27,9 @@ const authorization = () => {
       }
     } catch (err) {
       console.log(err);
+      error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const GetMe = async () => {
@@ -52,6 +55,7 @@ const authorization = () => {
   };
 
   const Logout = async () => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/logout`, {
         method: "GET",
@@ -72,9 +76,11 @@ const authorization = () => {
       console.log(err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const Register = async (body) => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/register`, {
         method: "POST",
@@ -98,6 +104,7 @@ const authorization = () => {
       console.log(err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   return {

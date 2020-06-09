@@ -7,6 +7,7 @@ const getters = {};
 
 const actions = {
   async getTodos({ commit }) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "GET",
@@ -30,8 +31,10 @@ const actions = {
       commit("setTodosErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearTodosErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
   async newTodo({ commit }, body) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "POST",
@@ -56,8 +59,10 @@ const actions = {
       commit("setTodosErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearTodosErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
   async updateTodo({ commit }, { body, id }) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "PUT",
@@ -83,8 +88,10 @@ const actions = {
       commit("setTodosErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearTodosErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
   async deleteTodo({ commit }, id) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "DELETE",
@@ -107,6 +114,7 @@ const actions = {
       commit("setTodosErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearTodosErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
 };
 

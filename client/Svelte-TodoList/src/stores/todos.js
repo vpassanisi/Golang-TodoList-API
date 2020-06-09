@@ -5,6 +5,7 @@ const todo = () => {
   const { subscribe, set, update } = writable([]);
 
   const GetTodos = async () => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "GET",
@@ -27,9 +28,11 @@ const todo = () => {
       console.log(err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const NewTodo = async (todo) => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "POST",
@@ -52,9 +55,11 @@ const todo = () => {
       console.log(err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const UpdateTodo = async (todo, id) => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "PUT",
@@ -84,9 +89,11 @@ const todo = () => {
       console.log(res.err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const DeleteTodo = async (id) => {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "DELETE",
@@ -115,6 +122,7 @@ const todo = () => {
       console.log(res.err);
       error.NewError("Something went wrong (╯°□°）╯︵ ┻━┻)");
     }
+    document.getElementById("loading").classList.add("invisible");
   };
 
   const SortTodos = () => {

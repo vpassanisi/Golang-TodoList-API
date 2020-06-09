@@ -10,16 +10,6 @@
   };
 </script>
 
-<style>
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: rgb(255, 255, 255) !important;
-  }
-</style>
-
 <section>
   <div
     class="flex flex-col w-90p bg-gray-300 dark:bg-gray-700 mx-auto mt-24 p-4

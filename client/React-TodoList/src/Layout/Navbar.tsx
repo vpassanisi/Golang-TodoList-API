@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
   );
 
   return (
-    <div className="w-full h-16 bg-light-blue-300">
+    <div className="fixed top-0 w-full h-16 bg-light-blue-300">
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="flex flex-row justify-between w-90p h-full mx-auto">
         <div className="flex items-center text-2xl font-hairline h-full">
@@ -91,6 +91,7 @@ const Navbar: React.FC = () => {
           {isDesktop ? desktopNav : mobile}
         </div>
       </div>
+      <div id="loading" className="progress-line invisible" />
     </div>
   );
 };

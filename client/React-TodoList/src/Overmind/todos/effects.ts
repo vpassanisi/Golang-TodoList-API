@@ -6,6 +6,10 @@ export const api = {
       error: null,
       todos: [],
     };
+
+    const el: HTMLElement | null = document.getElementById("loading");
+    if (el) el.classList.remove("invisible");
+
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "GET",
@@ -21,10 +25,14 @@ export const api = {
       } else {
         data.error = res.message;
       }
+      if (el) el.classList.add("invisible");
+
       return data;
     } catch (err) {
       console.log(err);
       data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      if (el) el.classList.add("invisible");
+
       return data;
     }
   },
@@ -38,6 +46,10 @@ export const api = {
       error: null,
       newTodo: null,
     };
+
+    const el: HTMLElement | null = document.getElementById("loading");
+    if (el) el.classList.remove("invisible");
+
     try {
       const req = await fetch(`/api/v1/todos`, {
         method: "POST",
@@ -55,10 +67,14 @@ export const api = {
       } else {
         data.error = res.message;
       }
+      if (el) el.classList.add("invisible");
+
       return data;
     } catch (err) {
       console.log(err);
       data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      if (el) el.classList.add("invisible");
+
       return data;
     }
   },
@@ -71,6 +87,10 @@ export const api = {
       error: null,
       updatedTodo: null,
     };
+
+    const el: HTMLElement | null = document.getElementById("loading");
+    if (el) el.classList.remove("invisible");
+
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "PUT",
@@ -88,10 +108,14 @@ export const api = {
       } else {
         data.error = res.message;
       }
+      if (el) el.classList.add("invisible");
+
       return data;
     } catch (err) {
       console.log(err);
       data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      if (el) el.classList.add("invisible");
+
       return data;
     }
   },
@@ -105,6 +129,10 @@ export const api = {
       error: null,
       success: false,
     };
+
+    const el: HTMLElement | null = document.getElementById("loading");
+    if (el) el.classList.remove("invisible");
+
     try {
       const req = await fetch(`/api/v1/todos/${id}`, {
         method: "DELETE",
@@ -120,10 +148,14 @@ export const api = {
       } else {
         data.error = res.message;
       }
+      if (el) el.classList.add("invisible");
+
       return data;
     } catch (err) {
       console.log(err);
       data.error = "Something went wrong (╯°□°）╯︵ ┻━┻)";
+      if (el) el.classList.add("invisible");
+
       return data;
     }
   },

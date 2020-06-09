@@ -1,8 +1,14 @@
 <template>
   <div class="fixed top-0 w-full h-16 bg-vue-green-400 shadow">
     <Sidebar v-bind:isOpen="isOpen" v-bind:toggleIsOpen="toggleIsOpen" />
-    <div class="flex flex-row items-center justify-between w-90p mx-auto h-full">
-      <div class="flex items-center justify-center h-full text-3xl font-hairline">TodoList</div>
+    <div
+      class="flex flex-row items-center justify-between w-90p mx-auto h-full"
+    >
+      <div
+        class="flex items-center justify-center h-full text-3xl font-hairline"
+      >
+        TodoList
+      </div>
       <div class="flex flex-row h-full">
         <button
           v-if="$mq === 'md' || $mq === 'sm'"
@@ -16,17 +22,23 @@
             v-if="isAuthenticated"
             v-on:click="logout"
             class="flex items-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none"
-          >Logout</button>
+          >
+            Logout
+          </button>
           <button
             v-if="!isAuthenticated"
             v-on:click="pushRegister"
             class="flex items-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none"
-          >Register</button>
+          >
+            Register
+          </button>
           <button
             v-if="!isAuthenticated"
             v-on:click="pushLogin"
             class="flex items-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none"
-          >Login</button>
+          >
+            Login
+          </button>
           <button
             v-on:click="toggleDarkMode"
             class="flex items-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none"
@@ -37,6 +49,7 @@
         </div>
       </div>
     </div>
+    <div id="loading" class="progress-line invisible" />
   </div>
 </template>
 
@@ -47,14 +60,14 @@ import Sidebar from "./Sidebar.vue";
 export default {
   name: "Navbar",
   components: {
-    Sidebar
+    Sidebar,
   },
   data() {
     return {
       isOpen: false,
       toggleIsOpen: () => {
         this.isOpen = !this.isOpen;
-      }
+      },
     };
   },
   methods: {
@@ -71,11 +84,11 @@ export default {
       if (this.$router.currentRoute.path !== "/") {
         this.$router.push("/");
       }
-    }
+    },
   },
   computed: mapState({
-    darkMode: state => state.darkMode.darkMode,
-    isAuthenticated: state => state.auth.isAuthenticated
-  })
+    darkMode: (state) => state.darkMode.darkMode,
+    isAuthenticated: (state) => state.auth.isAuthenticated,
+  }),
 };
 </script>

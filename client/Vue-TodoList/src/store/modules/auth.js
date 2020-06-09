@@ -10,6 +10,7 @@ const getters = {};
 
 const actions = {
   async login({ commit }, cred) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/login`, {
         method: "POST",
@@ -35,6 +36,7 @@ const actions = {
       commit("setErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearAuthErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
   async getMe({ commit }) {
     try {
@@ -54,6 +56,7 @@ const actions = {
     }
   },
   async logout({ commit }) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/logout`, {
         method: "GET",
@@ -77,8 +80,10 @@ const actions = {
       commit("setErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearAuthErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
   async createUser({ commit }, body) {
+    document.getElementById("loading").classList.remove("invisible");
     try {
       const req = await fetch(`/api/v1/auth/register`, {
         method: "POST",
@@ -104,6 +109,7 @@ const actions = {
       commit("setErr", "Something went wrong (╯°□°）╯︵ ┻━┻)");
       setTimeout(() => commit("clearAuthErr"), 2000);
     }
+    document.getElementById("loading").classList.add("invisible");
   },
 };
 
