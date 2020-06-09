@@ -38,6 +38,8 @@ func main() {
 	router.Use(static.Serve("/react", static.LocalFile("./client/React-TodoList/build", true)))
 	router.Use(static.Serve("/vue", static.LocalFile("./client/Vue-TodoList/dist", true)))
 
+	router.Use(static.Serve("/docs", static.LocalFile("./client/docs", true)))
+
 	// any request to a not specified route gets index.html
 	router.Use(static.Serve("/", static.LocalFile("./client", true)))
 
