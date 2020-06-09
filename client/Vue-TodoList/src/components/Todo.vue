@@ -36,7 +36,7 @@ export default {
     ...mapActions(["updateTodo", "deleteTodo"]),
     handleChecked() {
       this.updateTodo({
-        body: { isDone: this.todo.isDone },
+        body: { done: this.todo.done },
         id: this.todo._id,
       });
     },
