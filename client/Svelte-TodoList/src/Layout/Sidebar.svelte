@@ -32,6 +32,13 @@
         </i>
       {/if}
     </button>
+    <a
+      class="w-full text-center py-4 focus:outline-none dark:text-white
+      border-b-2 transition-colors duration-300 ease-in-out border-gray-700
+      dark:border-gray-400 hover:bg-white-alpha-30"
+      href="/">
+      Pick A Framework
+    </a>
     {#if $auth}
       <button
         class="w-full py-4 focus:outline-none dark:text-white border-b-2
