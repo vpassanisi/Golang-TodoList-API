@@ -18,12 +18,10 @@ import (
 // @access Private
 func UpdateTodo(c *gin.Context, client *mongo.Client) {
 
-	// these will be the fields that will be updated
 	updateFields := bson.M{
 		"updatedat": time.Now().Unix(),
 	}
 
-	// bind the request body to update
 	bindErr := c.ShouldBindJSON(&updateFields)
 	if bindErr != nil {
 		c.JSON(400, util.ResError{
@@ -45,7 +43,6 @@ func UpdateTodo(c *gin.Context, client *mongo.Client) {
 		})
 	}
 
-	// get collection from client
 	todosCollection := client.Database("TodosDB").Collection("todos")
 
 	// this will be the document BEFORE it has been updated
@@ -86,7 +83,6 @@ func UpdateTodo(c *gin.Context, client *mongo.Client) {
 		})
 	}
 
-	// respond using response struct
 	c.JSON(200, util.ResTodo{
 		Success: true,
 		Message: updatedTodo,

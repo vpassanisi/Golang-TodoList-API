@@ -14,7 +14,6 @@ import (
 // @access Private
 func CreateTodo(c *gin.Context, client *mongo.Client) {
 
-	// Make new todo and bind JSON in body
 	newTodo := models.NewTodo{}
 	newTodo.SetCreatedAt()
 	newTodo.SetUpdatedAt()
@@ -29,7 +28,6 @@ func CreateTodo(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// get collection
 	todosCollection := client.Database("TodosDB").Collection("todos")
 
 	// put todo in the collection, returns _id
@@ -53,7 +51,6 @@ func CreateTodo(c *gin.Context, client *mongo.Client) {
 		User:        newTodo.User,
 	}
 
-	// JSON response using response struct
 	c.JSON(200, util.ResTodo{
 		Success: true,
 		Message: todo,

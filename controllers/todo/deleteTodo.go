@@ -16,7 +16,7 @@ import (
 // @route DELETE /api/v1/todos/:id
 // @access Private
 func DeleteTodo(c *gin.Context, client *mongo.Client) {
-	// make an ObjectID from the request params
+
 	id, objErr := primitive.ObjectIDFromHex(c.Param("id"))
 	if objErr != nil {
 		c.JSON(400, util.ResMessage{
@@ -26,13 +26,10 @@ func DeleteTodo(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// gets collection
 	todosCollection := client.Database("TodosDB").Collection("todos")
 
-	// this will be the delete todo
 	deletedDocument := models.Todo{}
 
-	// find and delete todo by its id
 	deleteErr := todosCollection.FindOneAndDelete(c.Request.Context(), bson.M{"_id": id}).Decode(&deletedDocument)
 	if deleteErr != nil {
 		// ErrNoDocuments means that the filter did not match any documents in the collection

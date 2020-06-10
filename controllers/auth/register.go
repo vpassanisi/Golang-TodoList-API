@@ -21,10 +21,9 @@ import (
 // @route POST /api/v1/auth/register
 // @access Public
 func Register(c *gin.Context, client *mongo.Client) {
-	// var to bind credentials to
+
 	user := models.UserCred{}
 
-	// bind request body
 	bindErr := c.ShouldBindJSON(&user)
 	if bindErr != nil {
 		log.Fatal(bindErr)
@@ -51,13 +50,10 @@ func Register(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// encrypt the provided password
 	user.Encrypt(user.Password)
 
-	// get collection
 	usersCollection := client.Database("TodosDB").Collection("users")
 
-	// var for checking if user email already in db
 	alreadyExists := models.UserDB{}
 
 	// search db to make sure provided email is unique
@@ -70,7 +66,6 @@ func Register(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// add user to db
 	insertOneResult, insertErr := usersCollection.InsertOne(c.Request.Context(), user)
 	if insertErr != nil {
 		c.JSON(400, util.ResError{
@@ -96,10 +91,8 @@ func Register(c *gin.Context, client *mongo.Client) {
 		// strict for csrf safety
 		c.SetSameSite(http.SameSiteStrictMode)
 
-		// set cookie
 		c.SetCookie("token", token, 2000, "/", "", secure, true)
 
-		// respond with the created users information
 		c.JSON(200, util.ResUser{
 			Success: true,
 			Message: models.UserRes{

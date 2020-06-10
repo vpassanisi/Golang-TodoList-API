@@ -18,17 +18,15 @@ import (
 // @route POST /api/v1/auth/login
 // @access Public
 func Login(c *gin.Context, client *mongo.Client) {
-	// bind request body to struct
+
 	credentials := models.UserCred{}
 	bindErr := c.ShouldBindJSON(&credentials)
 	if bindErr != nil {
 		log.Fatal(bindErr)
 	}
 
-	// holds the result of the db query
 	result := models.UserDB{}
 
-	// gets collection
 	usersCollection := client.Database("TodosDB").Collection("users")
 
 	// query for the user email because that is unique
@@ -44,7 +42,6 @@ func Login(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// compare encrypted passowrd to provided password
 	compErr := bcrypt.CompareHashAndPassword([]byte(result.Password), []byte(credentials.Password))
 	// if there is an error the provided password was incorrect else sign in the user and respond with cookie
 	if compErr != nil {
@@ -55,7 +52,6 @@ func Login(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// get a signed token containing the users _id
 	token, getSignedErr := credentials.GetSignedJWT(result.ID.Hex())
 	// jwt errror, should be rare but needs to return
 	if getSignedErr != nil {
@@ -66,7 +62,7 @@ func Login(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// secure cookie unles in development env
+	// secure cookie unless in development env
 	secure := true
 	if os.Getenv("GIN_ENV") == "development" {
 		secure = false
@@ -75,10 +71,8 @@ func Login(c *gin.Context, client *mongo.Client) {
 	// strict for csrf safety
 	c.SetSameSite(http.SameSiteStrictMode)
 
-	// set cookie
 	c.SetCookie("token", token, 2000, "/", "", secure, true)
 
-	// response struct
 	c.JSON(200, util.ResUser{
 		Success: true,
 		Message: models.UserRes{

@@ -23,10 +23,8 @@ func Logout(c *gin.Context) {
 	// strict for csrf safety
 	c.SetSameSite(http.SameSiteStrictMode)
 
-	// set a new empty cookie
 	c.SetCookie("token", "", 2000, "/", "", secure, true)
 
-	// responed with logged out
 	c.JSON(200, util.ResMessage{
 		Success: true,
 		Message: "You have been logged out",

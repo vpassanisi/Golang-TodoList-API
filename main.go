@@ -19,10 +19,8 @@ func main() {
 		godotenv.Load()
 	}
 
-	// client connection to mongodb
 	client := config.ConnectDB()
 
-	// new gin router
 	router := gin.Default()
 
 	// CORS middleware
@@ -32,7 +30,6 @@ func main() {
 	// basic security headers
 	router.Use(helmet.Default())
 
-	// set up routes
 	routes.SetupRouter(router, client)
 
 	router.Use(static.Serve("/svelte", static.LocalFile("./client/Svelte-TodoList/public", true)))
@@ -43,10 +40,8 @@ func main() {
 
 	router.Use(static.Serve("/", static.LocalFile("./client", true)))
 
-	// run the router
 	router.Run()
 
-	// disconnect from mongodb
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	defer client.Disconnect(ctx)

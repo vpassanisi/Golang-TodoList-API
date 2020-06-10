@@ -14,10 +14,8 @@ import (
 // @access Private
 func GetAllTodos(c *gin.Context, client *mongo.Client) {
 
-	// map of todos to be put in response
 	todos := []models.Todo{}
 
-	// get collection
 	todosCollection := client.Database("TodosDB").Collection("todos")
 
 	// query db and filter by user id
@@ -42,7 +40,6 @@ func GetAllTodos(c *gin.Context, client *mongo.Client) {
 		return
 	}
 
-	// respond with todos
 	c.JSON(200, util.ResTodos{
 		Success: true,
 		Message: todos,

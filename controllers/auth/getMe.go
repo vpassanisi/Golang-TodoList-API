@@ -27,10 +27,8 @@ func GetMe(c *gin.Context, client *mongo.Client) {
 	// holds the result of the db query
 	result := models.UserDB{}
 
-	// gets collection
 	usersCollection := client.Database("TodosDB").Collection("users")
 
-	// query for the user email because that is unique
 	findOneErr := usersCollection.FindOne(c.Request.Context(), bson.M{
 		"_id": id,
 	}).Decode(&result)
