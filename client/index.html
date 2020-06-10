@@ -48,11 +48,10 @@
         justify-items: center;
       }
 
-      .btn-svelte {
+      .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background-color: #ff3d00;
         width: 8rem;
         height: 2rem;
         border-radius: 5px;
@@ -61,40 +60,26 @@
         transition: background 300ms ease-in-out;
         margin: 1rem;
       }
-      .btn-svelte:hover {
+
+      .svelte {
+        background-color: #ff3d00;
+      }
+      .svelte:hover {
         background-color: #f37048;
       }
-      .btn-react {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+
+      .react {
         background-color: #4fc3f7;
-        width: 8rem;
-        height: 2rem;
-        border-radius: 5px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        transition: background 300ms ease-in-out;
-        margin: 1rem;
       }
-      .btn-react:hover {
+      .react:hover {
         background-color: rgb(112, 201, 243);
       }
-      .btn-vue {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #00b376;
-        width: 8rem;
-        height: 2rem;
-        border-radius: 5px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        transition: background 300ms ease-in-out;
-        margin: 1rem;
-      }
-      .btn-vue:hover {
+
+      .vue:hover {
         background-color: #5bc7a3;
+      }
+      .vue {
+        background-color: #00b376;
       }
 
       .title {
@@ -113,11 +98,11 @@
     <div class="container">
       <h1 class="title">What framework would you like to use?</h1>
       <div class="btn-container">
-        <a href="/svelte" class="btn-svelte">
+        <a href="/svelte" class="btn svelte">
           Svelte
         </a>
-        <a href="/react" class="btn-react">React</a>
-        <a href="/vue" class="btn-vue">Vue</a>
+        <a href="/react" class="btn react">React</a>
+        <a href="/vue" class="btn vue">Vue</a>
       </div>
     </div>
   </body>

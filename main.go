@@ -38,7 +38,10 @@ func main() {
 
 	router.Use(static.Serve("/docs", static.LocalFile("./client/docs", true)))
 
-	router.Use(static.Serve("/", static.LocalFile("./client", true)))
+	router.LoadHTMLFiles("./client/index.html")
+	router.NoRoute(func(c *gin.Context) {
+		c.HTML(200, "index.html", nil)
+	})
 
 	router.Run()
 

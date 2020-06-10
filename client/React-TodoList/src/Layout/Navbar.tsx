@@ -32,6 +32,12 @@ const Navbar: React.FC = () => {
           >
             Logout
           </button>
+          <a
+            className="flex items-center text-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none w-24"
+            href="/"
+          >
+            Pick A Framework
+          </a>
           <button
             className="flex items-center h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"
@@ -56,6 +62,12 @@ const Navbar: React.FC = () => {
           >
             Regsiter
           </button>
+          <a
+            className="flex items-center text-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none w-24"
+            href="/"
+          >
+            Pick A Framework
+          </a>
           <button
             className="flex items-center h-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
     ease-in-out px-2"

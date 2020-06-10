@@ -39,6 +39,11 @@
           >
             Login
           </button>
+          <a
+            class="flex items-center text-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none w-24"
+            href="/"
+            >Pick A Framework</a
+          >
           <button
             v-on:click="toggleDarkMode"
             class="flex items-center h-full px-2 hover:bg-white-alpha-30 transition-colors duration-300 ease-in-out focus:outline-none"

@@ -11,21 +11,32 @@
         <i v-if="darkMode" class="material-icons text-white">brightness_7</i>
         <i v-else class="material-icons">brightness_4</i>
       </button>
+      <a
+        class="dark:text-white w-full hover:bg-black-alpha-20 transition-colors duration-300 ease-in-out py-4 text-center focus:outline-none border-b-2 border-gray-300 dark:border-gray-600"
+        href="/"
+        >Pick A Framework</a
+      >
       <button
         v-if="isAuthenticated"
         v-on:click="handleLogout"
         class="dark:text-white w-full hover:bg-black-alpha-20 transition-colors duration-300 ease-in-out py-4 focus:outline-none border-b-2 border-gray-300 dark:border-gray-600"
-      >Logout</button>
+      >
+        Logout
+      </button>
       <button
         v-if="!isAuthenticated"
         v-on:click="pushLogin"
         class="dark:text-white w-full hover:bg-black-alpha-20 transition-colors duration-300 ease-in-out py-4 focus:outline-none border-b-2 border-gray-300 dark:border-gray-600"
-      >Login</button>
+      >
+        Login
+      </button>
       <button
         v-if="!isAuthenticated"
         v-on:click="pushRegister"
         class="dark:text-white w-full hover:bg-black-alpha-20 transition-colors duration-300 ease-in-out py-4 focus:outline-none border-b-2 border-gray-300 dark:border-gray-600"
-      >Register</button>
+      >
+        Register
+      </button>
     </div>
     <button
       class="fixed left-0 right-0 top-0 bottom-0 transition-colors duration-300 ease-in-out focus:outline-none"
@@ -56,11 +67,11 @@ export default {
       if (this.$router.currentRoute.path !== "/register")
         this.$router.push("/register");
       this.toggleIsOpen();
-    }
+    },
   },
   computed: mapState({
-    darkMode: state => state.darkMode.darkMode,
-    isAuthenticated: state => state.auth.isAuthenticated
-  })
+    darkMode: (state) => state.darkMode.darkMode,
+    isAuthenticated: (state) => state.auth.isAuthenticated,
+  }),
 };
 </script>

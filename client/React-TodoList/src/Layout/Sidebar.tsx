@@ -38,6 +38,13 @@ const Sidebar: React.FC<Props> = (props) => {
             {isEnabled ? "brightness_7" : "brightness_4"}
           </i>
         </button>
+        <a
+          className="flex items-center justify-center py-4 w-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
+          ease-in-out px-2 border-b-2 border-gray-700 dark:border-gray-400"
+          href="/"
+        >
+          Pick A Framework
+        </a>
         {isAuthenticated ? (
           <button
             className="flex items-center justify-center py-4 w-full hover:bg-white-alpha-30 focus:outline-none transition-colors duration-300
