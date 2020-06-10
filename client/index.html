@@ -41,7 +41,9 @@
       .container {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
         align-items: center;
         justify-items: center;
       }
@@ -57,7 +59,7 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
           0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
         transition: background 300ms ease-in-out;
-        margin-right: 1rem;
+        margin: 1rem;
       }
       .btn-svelte:hover {
         background-color: #f37048;
@@ -73,7 +75,7 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
           0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
         transition: background 300ms ease-in-out;
-        margin-right: 1rem;
+        margin: 1rem;
       }
       .btn-react:hover {
         background-color: rgb(112, 201, 243);
@@ -89,17 +91,28 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
           0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
         transition: background 300ms ease-in-out;
-        margin-right: 1rem;
+        margin: 1rem;
       }
       .btn-vue:hover {
         background-color: #5bc7a3;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>What framework would you like to use?</h1>
-      <div>
+      <h1 class="title">What framework would you like to use?</h1>
+      <div class="btn-container">
         <a href="/svelte" class="btn-svelte">
           Svelte
         </a>
