@@ -74,6 +74,15 @@ const Login: React.FC = (props) => {
           Login
         </button>
       </div>
+      <div className="flex flex-col items-center justify-center w-full mt-4">
+        <div className="mb-2 text-black dark:text-white">or</div>
+        <button
+          className="bg-light-blue-300 py-2 px-4 rounded shadow"
+          onClick={() => login({ email: "Demo@gmail.com", password: "123456" })}
+        >
+          use the Demo account
+        </button>
+      </div>
     </div>
   );
 };

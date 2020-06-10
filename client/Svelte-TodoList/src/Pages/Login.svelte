@@ -44,4 +44,17 @@
       Submit
     </button>
   </div>
+  <div
+    class="flex flex-col items-center justify-center w-full text-black
+    dark:text-white mt-4">
+    <div class="mb-2">or</div>
+    <button
+      class="bg-deep-orange-a400 text-black rounded shadow py-2 px-4"
+      on:click={() => auth.Login({
+          email: 'Demo@gmail.com',
+          password: '123456'
+        })}>
+      use the Demo account
+    </button>
+  </div>
 </section>
