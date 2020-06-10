@@ -1,5 +1,3 @@
-const { process } = require("autoprefixer");
-
 module.exports = {
   devServer: {
     proxy: {

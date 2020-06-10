@@ -22,18 +22,18 @@
     </div>
     <input
       class="border-b-2 border-black dark:border-white bg-transparent
-      focus:border-deep-orange-a400 text-white mb-4 p-2 transition-colors
-      duration-300 ease-in-out focus:outline-none placeholder-gray-700
-      dark-placeholder:placeholder-gray-300"
+      focus:border-deep-orange-a400 text-black dark:text-white mb-4 p-2
+      transition-colors duration-300 ease-in-out focus:outline-none
+      placeholder-gray-700 dark-placeholder:placeholder-gray-300"
       type="text"
       placeholder="Email"
       name="email"
       bind:value={cred.email} />
     <input
       class="border-b-2 border-black dark:border-white bg-transparent
-      focus:border-deep-orange-a400 text-white mb-4 p-2 transition-colors
-      duration-300 ease-in-out focus:outline-none placeholder-gray-700
-      dark-placeholder:placeholder-gray-300"
+      focus:border-deep-orange-a400 text-black dark:text-white mb-4 p-2
+      transition-colors duration-300 ease-in-out focus:outline-none
+      placeholder-gray-700 dark-placeholder:placeholder-gray-300"
       type="text"
       placeholder="Password"
       name="password"

@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	helmet "github.com/danielkov/gin-helmet"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -29,7 +30,7 @@ func main() {
 	// router.Use(middleware.Cors())
 
 	// basic security headers
-	// router.Use(helmet.Default())
+	router.Use(helmet.Default())
 
 	// set up routes
 	routes.SetupRouter(router, client)
@@ -40,7 +41,6 @@ func main() {
 
 	router.Use(static.Serve("/docs", static.LocalFile("./client/docs", true)))
 
-	// any request to a not specified route gets index.html
 	router.Use(static.Serve("/", static.LocalFile("./client", true)))
 
 	// run the router
