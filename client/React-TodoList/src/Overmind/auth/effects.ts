@@ -1,5 +1,7 @@
 import type { AuthState } from "./state";
 
+// Effects retrieve or create data and format it so that actions can put it into state
+
 export const api = {
   async login(cred: object) {
     let data: AuthState = {

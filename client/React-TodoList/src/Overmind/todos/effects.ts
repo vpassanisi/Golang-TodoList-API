@@ -1,5 +1,7 @@
 import { TodosState, Todo } from "./state";
 
+// Effects retrieve or create data and format it so that actions can put it into state
+
 export const api = {
   async getTodos() {
     let data: TodosState = {

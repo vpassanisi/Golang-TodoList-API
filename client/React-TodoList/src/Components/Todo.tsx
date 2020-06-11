@@ -8,6 +8,7 @@ interface TodoProps {
   key: number;
 }
 
+// Component of a single Todo. Updates the done status and button for deleting the Todo
 const TodoComp: React.FC<TodoProps> = (props) => {
   const { todo } = props;
 
@@ -17,14 +18,10 @@ const TodoComp: React.FC<TodoProps> = (props) => {
     },
   } = useOvermind();
 
-  const date = new Date(todo.createdAt * 1000);
-  const dateTimeFormat = new Intl.DateTimeFormat("en", {
+  const [{ value: month }, , { value: day }] = new Intl.DateTimeFormat("en", {
     month: "short",
     day: "2-digit",
-  });
-  const [{ value: month }, , { value: day }] = dateTimeFormat.formatToParts(
-    date
-  );
+  }).formatToParts(new Date(todo.createdAt * 1000));
 
   // changeIsDone.body.isdone CANNOT be camelcase because ShouldBindJSON in this route does not respect case
   let changeIsDone: UpdateTodoArg = {

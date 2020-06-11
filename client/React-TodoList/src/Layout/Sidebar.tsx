@@ -7,6 +7,7 @@ interface Props {
   setIsOpen: Function;
 }
 
+// Sidebar for mobile navigation. Has logic for certain navigation based on state
 const Sidebar: React.FC<Props> = (props) => {
   const { isOpen, setIsOpen } = props;
   const {

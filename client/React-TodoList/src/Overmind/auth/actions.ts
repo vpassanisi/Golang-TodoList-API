@@ -1,5 +1,7 @@
 import { AsyncAction } from "overmind";
 
+// actions are logic that handlke the data returned from effects and puts it into state
+
 export const login: AsyncAction<object, void> = async (
   { state, effects },
   cred

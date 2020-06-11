@@ -8,6 +8,7 @@
   let updateTodo = {};
 </script>
 
+<!-- form component for updating the title and description of the todo -->
 <div
   transition:slide
   class="flex flex-row items-center bg-gray-400 dark:bg-dark-gray-700 p-2">

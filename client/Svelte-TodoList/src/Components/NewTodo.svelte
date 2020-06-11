@@ -3,6 +3,7 @@
   let todo = {};
 </script>
 
+<!-- Form for creating and submiting a new todo -->
 <div
   class="flex flex-col w-full bg-gray-300 dark:bg-gray-700 mx-auto mt-24 p-4
   shadow max-w-screen-md mb-8 rounded">

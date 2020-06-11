@@ -24,6 +24,7 @@
   });
 </script>
 
+<!-- component for a single todo.  updates the done status and has a button to delete the todo -->
 <div
   transition:fade|local={{ duration: 300 }}
   class="flex flex-row items-center justify-between w-full dark:bg-dark-gray-800

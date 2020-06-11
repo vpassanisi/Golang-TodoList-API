@@ -3,6 +3,8 @@ import { state } from "./state";
 import * as actions from "./actions";
 import * as effects from "./effects";
 
+// brings state, actions, and effects for auth into one object
+
 export const auth = {
   state,
   actions,

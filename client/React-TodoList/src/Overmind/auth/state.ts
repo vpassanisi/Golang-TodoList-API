@@ -1,3 +1,5 @@
+// auth related state and the types for the data
+
 export type User = {
   _id: string;
   name: string;

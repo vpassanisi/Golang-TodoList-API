@@ -3,6 +3,8 @@ import { state } from "./state";
 import * as actions from "./actions";
 import * as effects from "./effects";
 
+// brings todos state, actions, and effects together in one object
+
 export const todos = {
   state,
   actions,

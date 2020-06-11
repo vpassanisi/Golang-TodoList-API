@@ -1,4 +1,5 @@
 <template>
+  <!-- Component for a single todo -->
   <div
     class="flex flex-row items-center justify-center w-full border-2 border-gray-300 dark:border-gray-800 p-2 m-1"
   >

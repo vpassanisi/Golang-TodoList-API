@@ -1,6 +1,7 @@
 import React from "react";
 import { useOvermind } from "../Overmind";
 
+// Form for creating and submiting a new Todo
 const NewTodo: React.FC = () => {
   const {
     actions: {

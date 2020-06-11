@@ -4,6 +4,7 @@ import { useOvermind } from "../Overmind/index";
 import { useHistory } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
+// Navbar. Has logic for showing certain navigation based on state. Parent component to the Sidebar
 const Navbar: React.FC = () => {
   const {
     state: {

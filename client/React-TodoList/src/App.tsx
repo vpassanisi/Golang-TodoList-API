@@ -12,6 +12,7 @@ import CreateUser from "./Pages/CreateUser";
 import Error from "./Layout/Error";
 
 const App: React.FC = () => {
+  // config for overmind dev tools
   const overmind = createOvermind(config, {
     devtools: "http://localhost:5000",
   });

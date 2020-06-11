@@ -5,6 +5,8 @@ import { auth } from "./auth/index";
 import { darkMode } from "./darkMode/index";
 import { todos } from "./todos";
 
+// brings all the state objects together
+
 export const config = namespaced({
   darkMode,
   auth,

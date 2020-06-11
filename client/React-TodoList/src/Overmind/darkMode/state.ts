@@ -1,3 +1,5 @@
+// darkMode related state and the types for the data
+
 type DarkModeState = {
   isEnabled: boolean;
 };

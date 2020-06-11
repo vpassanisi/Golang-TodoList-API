@@ -1,3 +1,5 @@
+// todos related state and the types for the data
+
 export type Todo = {
   _id: string;
   title: string;

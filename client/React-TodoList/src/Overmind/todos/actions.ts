@@ -1,6 +1,8 @@
 import { AsyncAction } from "overmind";
 import { Todo } from "./state";
 
+// actions are logic that handlke the data returned from effects and puts it into state
+
 export const getTodos: AsyncAction = async ({ state, effects }) => {
   let todos = await effects.todos.api.getTodos();
 
